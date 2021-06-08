@@ -30,6 +30,9 @@ public class Camino {
 		return pesoTotalCamino;
 	}
 	public boolean esMenor(Camino caminoMenor) {
+		if(caminoMenor == null) {
+			return true;
+		}
 		return this.pesoTotalCamino < caminoMenor.pesoTotalCamino;
 	}
 
