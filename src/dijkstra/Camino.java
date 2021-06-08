@@ -19,11 +19,11 @@ public class Camino {
 		pesoTotalCamino += nuevaArista.getPeso();
 	}
 	
-	public void agregarCamino(Camino nuevoCamino) {
+	public void agregarCamino(Camino nuevoCamino, Arista union) {
 		for (Nodo nodo : nuevoCamino.nodosCamino) {
 			this.nodosCamino.add(nodo);
 		}
-		pesoTotalCamino += nuevoCamino.pesoTotalCamino;
+		pesoTotalCamino += nuevoCamino.pesoTotalCamino + union.getPeso();
 	}
 	
 	public int getPesoTotal() {

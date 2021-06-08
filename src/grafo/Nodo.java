@@ -4,10 +4,37 @@ import monticulo.Monticulo;
 import monticulo.MonticuloMinima;
 
 public class Nodo {
-	private Monticulo<Arista> aristas;
-
-	public Nodo() {
-		this.aristas = new MonticuloMinima<Arista>();
+	private Monticulo<Arista> aristas =new MonticuloMinima<Arista>();
+	private int idNodo;
+	@Override
+	public String toString() {
+		return "[idNodo=" + idNodo + "]";
+	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((aristas == null) ? 0 : aristas.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Nodo other = (Nodo) obj;
+		if (aristas == null) {
+			if (other.aristas != null)
+				return false;
+		} else if (!aristas.equals(other.aristas))
+			return false;
+		return true;
+	}
+	public Nodo(int id) {
+		this.idNodo = id;
 	}
 	public void agregarArista(Arista nuevaArista) throws Exception {
 		aristas.agregar(nuevaArista);

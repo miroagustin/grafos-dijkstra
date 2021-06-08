@@ -6,9 +6,9 @@ import monticulo.Monticulo;
 import monticulo.MonticuloMinima;
 
 public class Dijkstra {
-
+	Camino minimo;
 	public Dijkstra(Nodo inicio, Nodo fin) {
-		obtenerCaminoMinimo(inicio, fin);
+		minimo = obtenerCaminoMinimo(inicio, fin);
 	}
 
 	private Camino obtenerCaminoMinimo(Nodo inicio, Nodo fin) {
@@ -16,13 +16,24 @@ public class Dijkstra {
 		Monticulo<Arista> monticuloAristas = new MonticuloMinima<Arista>(monticuloOriginal);
 		Arista proxima;
 		Camino menorCamino = null;
+		Camino caminoActual = new Camino(inicio);
 		while((proxima = monticuloAristas.quitar()) != null) {
-			Camino caminoActual = new Camino(inicio);
-			caminoActual.agregarCamino(obtenerCaminoMinimo(proxima.getDestino(),fin));
-			if(caminoActual != null && caminoActual.esMenor(menorCamino)) {
-				menorCamino = caminoActual;
+			caminoActual = new Camino(inicio);
+			Camino caminoRestante = obtenerCaminoMinimo(proxima.getDestino(),fin);
+			if(caminoRestante != null) {
+				caminoActual.agregarCamino(caminoRestante, proxima);
+				if(caminoActual.esMenor(menorCamino)) {
+					menorCamino = caminoActual;
+				}
 			}
 		}
+		if(inicio.equals(fin)) {
+			menorCamino = caminoActual;
+		}
 		return menorCamino;
+	}
+
+	public Camino getCaminoMinimo() {
+		return minimo;
 	}
 }

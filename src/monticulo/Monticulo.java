@@ -1,6 +1,7 @@
 package monticulo;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import grafo.Arista;
@@ -14,7 +15,11 @@ public abstract class Monticulo<TipoMonticulable extends Monticulable> {
 	}
 	
 	public Monticulo(Monticulo<TipoMonticulable> origen) {
-		monticulo = new ArrayList<TipoMonticulable>(origen.monticulo);
+		monticulo = new ArrayList<TipoMonticulable>();
+		monticulo.add(null);
+		for (int i = 1; i < origen.monticulo.size(); i++) {
+			agregar(origen.monticulo.get(i));
+		}
 	}
 
 	public void agregar(TipoMonticulable mon) {
