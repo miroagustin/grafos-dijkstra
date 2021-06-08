@@ -2,7 +2,6 @@ package dijkstra;
 
 import java.util.LinkedList;
 import java.util.List;
-
 import grafo.Arista;
 import grafo.Nodo;
 
@@ -14,6 +13,11 @@ public class Camino {
 		nodosCamino.add(inicio);
 	}
 	
+	public Camino(Camino caminoActual) {
+		nodosCamino = new LinkedList<Nodo>(caminoActual.nodosCamino);
+		pesoTotalCamino = caminoActual.pesoTotalCamino;
+	}
+
 	public void agregarArista(Arista nuevaArista) {
 		nodosCamino.add(nuevaArista.getDestino());
 		pesoTotalCamino += nuevaArista.getPeso();
@@ -28,6 +32,17 @@ public class Camino {
 	
 	public int getPesoTotal() {
 		return pesoTotalCamino;
+	}
+	public Nodo getUltimoNodo() {
+		return nodosCamino.get(nodosCamino.size() -1);
+	}
+	public boolean nodoPertenceCamino(Nodo nodo) {
+		for (Nodo nodoCamino : nodosCamino) {
+			if(nodoCamino.equals(nodo)) {
+				return true;
+			}
+		}
+		return false;
 	}
 	public boolean esMenor(Camino caminoMenor) {
 		if(caminoMenor == null) {

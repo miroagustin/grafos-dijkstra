@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 
 import grafo.Arista;
 import grafo.Grafo;
+import grafo.GrafoBidireccional;
+import grafo.GrafoDireccional;
 import grafo.Nodo;
 
 class DijkstraTests {
@@ -15,7 +17,7 @@ class DijkstraTests {
 
 	@BeforeEach
 	void setUp() throws Exception {
-		grafo = new Grafo();
+		grafo = new GrafoDireccional();
 		Nodo nodo1 = new Nodo(1);
 		grafo.agregarNodo(nodo1);
 		Nodo nodo2 = new Nodo(2);
@@ -51,7 +53,7 @@ class DijkstraTests {
 
 	@Test
 	void testDijkstra2() throws Exception {
-		grafo2 = new Grafo();
+		grafo2 = new GrafoDireccional();
 		Nodo nodo1 = new Nodo(1);
 		grafo2.agregarNodo(nodo1);
 		Nodo nodo2 = new Nodo(2);
@@ -101,7 +103,7 @@ class DijkstraTests {
 	
 	@Test
 	void testDijkstraPrincesa() throws Exception {
-		Grafo grafoPrincesa = new Grafo();
+		Grafo grafoPrincesa = new GrafoBidireccional();
 		Nodo nodo1 = new Nodo(1);
 		grafoPrincesa.agregarNodo(nodo1);
 		Nodo nodo2 = new Nodo(2);
@@ -121,25 +123,25 @@ class DijkstraTests {
 		Nodo nodo9 = new Nodo(9);
 		grafoPrincesa.agregarNodo(nodo9);
 		Arista arista12 = new Arista(3, nodo2);
-		nodo1.agregarArista(arista12);
+		grafoPrincesa.agregarAristaNodo(nodo1, arista12);
 		Arista arista13 = new Arista(2, nodo3);
-		nodo1.agregarArista(arista13);
+		grafoPrincesa.agregarAristaNodo(nodo1,arista13);
 		Arista arista23 = new Arista(4, nodo3);
-		nodo2.agregarArista(arista23);
+		grafoPrincesa.agregarAristaNodo(nodo2,arista23);
 		Arista arista26 = new Arista(1, nodo6);
-		nodo2.agregarArista(arista26);
+		grafoPrincesa.agregarAristaNodo(nodo2,arista26);
 		Arista arista38 = new Arista(1, nodo8);
-		nodo3.agregarArista(arista38);
+		grafoPrincesa.agregarAristaNodo(nodo3,arista38);
 		Arista arista86 = new Arista(5, nodo6);
-		nodo8.agregarArista(arista86);
+		grafoPrincesa.agregarAristaNodo(nodo8,arista86);
 		Arista arista45 = new Arista(2, nodo5);
-		nodo4.agregarArista(arista45);
+		grafoPrincesa.agregarAristaNodo(nodo4,arista45);
 		Arista arista34 = new Arista(2, nodo4);
-		nodo3.agregarArista(arista34);
+		grafoPrincesa.agregarAristaNodo(nodo3, arista34);
 		Arista arista36 = new Arista(2, nodo6);
-		nodo3.agregarArista(arista36);
+		grafoPrincesa.agregarAristaNodo(nodo3,arista36);
 		Arista arista69 = new Arista(3, nodo9);
-		nodo6.agregarArista(arista69);
+		grafoPrincesa.agregarAristaNodo(nodo6,arista69);
 		System.out.println("Camino de la princesa al principe: "+grafoPrincesa.obtenerCaminoMinimo(0, 8));
 		System.out.println("Camino de la princesa al primer dragon: "+grafoPrincesa.obtenerCaminoMinimo(7, 8));
 		System.out.println("Camino de la princesa al segundo dragon: "+grafoPrincesa.obtenerCaminoMinimo(4, 8));

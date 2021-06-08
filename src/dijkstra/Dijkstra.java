@@ -8,29 +8,27 @@ import monticulo.MonticuloMinima;
 public class Dijkstra {
 	Camino minimo;
 	public Dijkstra(Nodo inicio, Nodo fin) {
-		minimo = obtenerCaminoMinimo(inicio, fin);
+		Camino caminoInicial = new Camino(inicio);
+		obtenerCaminoMinimo(caminoInicial, fin);
 	}
 
-	private Camino obtenerCaminoMinimo(Nodo inicio, Nodo fin) {
-		Monticulo<Arista> monticuloOriginal = inicio.obtenerMonticuloAristas();
+	private void obtenerCaminoMinimo(Camino caminoActual, Nodo fin) {
+		Nodo nodoActual = caminoActual.getUltimoNodo();
+		Monticulo<Arista> monticuloOriginal = nodoActual.obtenerMonticuloAristas();
 		Monticulo<Arista> monticuloAristas = new MonticuloMinima<Arista>(monticuloOriginal);
 		Arista proxima;
-		Camino menorCamino = null;
-		Camino caminoActual = new Camino(inicio);
-		while((proxima = monticuloAristas.quitar()) != null) {
-			caminoActual = new Camino(inicio);
-			Camino caminoRestante = obtenerCaminoMinimo(proxima.getDestino(),fin);
-			if(caminoRestante != null) {
-				caminoActual.agregarCamino(caminoRestante, proxima);
-				if(caminoActual.esMenor(menorCamino)) {
-					menorCamino = caminoActual;
+
+		while((proxima = monticuloAristas.quitar()) != null && caminoActual.esMenor(minimo)) {
+			Camino caminoRestante = new Camino(caminoActual);
+			Nodo proximoNodo = proxima.getDestino();
+			if(!caminoActual.nodoPertenceCamino(proximoNodo)) {
+				caminoRestante.agregarArista(proxima);
+				obtenerCaminoMinimo(caminoRestante, fin);
+				if(caminoRestante.getUltimoNodo().equals(fin) && caminoRestante.esMenor(minimo)) {
+					minimo = caminoRestante;
 				}
 			}
 		}
-		if(inicio.equals(fin)) {
-			menorCamino = caminoActual;
-		}
-		return menorCamino;
 	}
 
 	public Camino getCaminoMinimo() {

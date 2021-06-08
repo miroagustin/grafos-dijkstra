@@ -36,7 +36,7 @@ public class Nodo {
 	public Nodo(int id) {
 		this.idNodo = id;
 	}
-	public void agregarArista(Arista nuevaArista) throws Exception {
+	public void agregarArista(Arista nuevaArista) {
 		aristas.agregar(nuevaArista);
 	}
 	public Arista obtenerAristaMinima() {
