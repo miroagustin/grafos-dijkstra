@@ -142,9 +142,9 @@ class DijkstraTests {
 		grafoPrincesa.agregarAristaNodo(nodo3,arista36);
 		Arista arista69 = new Arista(3, nodo9);
 		grafoPrincesa.agregarAristaNodo(nodo6,arista69);
-		System.out.println("Camino de la princesa al principe: "+grafoPrincesa.obtenerCaminoMinimo(0, 8));
-		System.out.println("Camino de la princesa al primer dragon: "+grafoPrincesa.obtenerCaminoMinimo(7, 8));
-		System.out.println("Camino de la princesa al segundo dragon: "+grafoPrincesa.obtenerCaminoMinimo(4, 8));
+		System.out.println("Camino de la princesa al principe: "+grafoPrincesa.obtenerCaminoMinimo(8, 0));
+		System.out.println("Camino de la princesa al primer dragon: "+grafoPrincesa.obtenerCaminoMinimo(8, 7));
+		System.out.println("Camino de la princesa al segundo dragon: "+grafoPrincesa.obtenerCaminoMinimo(8, 4));
 	}
 
 }

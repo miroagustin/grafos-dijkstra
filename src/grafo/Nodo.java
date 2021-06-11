@@ -45,4 +45,8 @@ public class Nodo {
 	public Monticulo<Arista> obtenerMonticuloAristas() {
 		return aristas;
 	}
+	public int getId() {
+		// TODO Auto-generated method stub
+		return idNodo;
+	}
 }
